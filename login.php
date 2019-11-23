@@ -3,20 +3,7 @@
 		if(isset($_SESSION["username"])){
 			header('Location:regpr.php');
 		}
-?>
-<!DOCTYPE html>
-<html>
-		<head>
-				<meta charset="utf-8">
-				<title>Вход</title>
-				<link rel="stylesheet" href="style.css" />
-		</head>
-		<body>
-			<div class="logo2">
-				
-			</div>			
-			<?php
-				require('db.php');
+		require('db.php');
 				session_start();
 				if (isset($_POST['username'])){
 					 $username = stripslashes($_POST['username']);
@@ -36,7 +23,21 @@
 							</div>";
 						}
 					}else{
-			 ?>
+?>
+<!DOCTYPE html>
+<html>
+		<head>
+				<meta charset="utf-8">
+				<title>Вход</title>
+				<link rel="stylesheet" href="style.css" />
+		</head>
+		<body>
+			<div class="logo2">
+				
+			</div>			
+			
+				
+			
 		<div class="form">
 			<h1>Авторизация</h1>
 			<form action="" method="post" name="login">
