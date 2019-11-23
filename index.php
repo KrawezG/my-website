@@ -1,8 +1,6 @@
 <?php
-	session_start();
-		if(isset($_SESSION["username"])){
-			header('Location:regpr.php');
-		}
+//include auth.php file on all secure pages
+include("auth.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,45 +10,67 @@
 				<link rel="stylesheet" href="style.css" />
 		</head>
 		<body>
-			<div class="logo2">
-				
-			</div>			
-			<?php
-				require('db.php');
+		<div class="wrapper">
+		<div class="headerwrapper">
+		<div class="logo">
+			LOGO
+		</div>
+		<div class="logout">
+		Логин 
+		<?php 
 				session_start();
-				if (isset($_POST['username'])){
-					 $username = stripslashes($_POST['username']);
-					 $username = mysqli_real_escape_string($con,$username);
-					 $password = stripslashes($_POST['password']);
-					 $password = mysqli_real_escape_string($con,$password);
-					 $query = "SELECT * FROM `users` WHERE username='$username'
-					and password='$password'";
-					 $result = mysqli_query($con,$query) or die(mysql_error());
-					 $rows = mysqli_num_rows($result);
-						if($rows==1){header("Location: index.php");
-							$_SESSION['username'] = $username;
-							
-						}else{
-							echo "<div class='error'>
-							<h3>Неверно введён логин/пароль.</h3> <a href='login.php'>Войти</a>
-							</div>";
-						}
-					}else{
-			 ?>
-		<div class="form">
-			<h1>Авторизация</h1>
-			<form action="" method="post" name="login">
-				<div class="auth">
-				<label>Введите Ваше имя: <br/> <input type="text" name="username" placeholder="Имя пользователя" required /> <br/>
-				<label>Введите Ваш пароль: </br> <input type="password" name="password" placeholder="Пароль" required /> <br/>
-				<input name="submit" type="submit" value="Готово" /> <br/>
-				<p>Ещё не зарегистрированы? <a href="registration.php">Зарегистрироваться</a></p>
-				</div>
-			</form>
+				echo $_SESSION['username'];?>.</br>
+				<a href='logout.php'>Выйти</a></br>		
 		</div>
-		<div class="footer2">
-			<p>IU4-11B Krawez</p>
 		</div>
-		<?php } ?>
+		<div class="mainwrapper">
+		<div class="left" >
+		left
+		</div>
+		
+
+		<div class="menu">
+			menu
+			<div class="line">
+			</div>
+			see comments
+		</div>
+
+		<div class="content" >
+			content
+			<div class="posts">
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			<div class="postmain">
+			post1
+			</div>
+			</div>
+		</div>
+		<div class="right">
+		right
+		</div>
+		</div>
+		<div class="footerwrapper">
+		<div class="footer">
+			<p> footer </p>
+		</div>
+		</div>
+	</div>	
 		</body>
 </html>
