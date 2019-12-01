@@ -35,29 +35,25 @@
 
 		<div class="content" >
 			content
-			<div class="posts">
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			<div class="postmain">
-			post1
-			</div>
-			</div>
+			<div>
+			<?php
+			$mysql = new mysqli('localhost','root','','users');
+			$query ="SELECT * FROM `test` ORDER BY `date` DESC";
+ 
+			$result = mysqli_query($mysql, $query); 
+			if($result)
+			$rows = "";
+			while($rows = $result->fetch_assoc()){
+				echo "<div class=\"postmain\">";
+				echo "<h6>".$rows["varchar1"]." </h6><br>";
+				echo mb_strimwidth($rows["text"], 0, 30, "...");
+				
+				echo "</div>  ";
+			}
+			    mysqli_free_result($result);
+			mysqli_close($mysql);
+			?>
+</div>			</div>
 		</div>
 		<div class="right">
 		right
