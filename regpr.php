@@ -10,9 +10,10 @@ include("auth.php");
 	</head>
 
 	<body>	
-	
+	<div class= "wrapper">
+		<div class="headerwrapper">
 			<div class="logo">
-				
+				LOGO
 			</div>
 			<div class="logout">
 			Логин 
@@ -21,29 +22,34 @@ include("auth.php");
 				echo $_SESSION['username'];?>.</br>
 				<a href='logout.php'>Выйти</a></br>	
 			</div>
-			
-	
-			<div class="content">	
+		</div>
+		<div class="mainwrapper">
+			<div class="left" >
+				left
+			</div>
+			<div class="menu">
+				menu
+					<div class="line">
+					</div>
+				see comments
+			</div>
+			<div class="content" >
 				<p align="center">Вы уже авторизованы как <?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
 				<a href='index.php'>На главную.</a></p>
+					
 			</div>
-			
-				
-						
-				<div class="left">
-			
-				</div>
-						
-				<div class="right">
-						
-				</div>
-						
-				<div class="footer">
-					<p>@IU-4</p>
-				</div>
-						
+			<div class="right">
+				right
+			</div>
 		</div>
+		<div class="footerwrapper">
+			<div class="footer">
+				<p> footer </p>
+			</div>
+		</div>
+	</div>
+			
 	</body>
 </html>

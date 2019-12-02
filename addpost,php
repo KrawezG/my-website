@@ -1,0 +1,47 @@
+<?php
+session_start();
+require('db.php');
+
+		mysqli_query($con, "USE users");
+		
+		$info_is_valid = true;
+		
+		if ((isset($_POST['header']) and (isset($_POST['text']))
+		{
+			echo '<div class="sysreq">dannye verny<br> </div>';
+		}
+		else
+		{
+			echo '<div class="sysreq">почта не подходит<br></div>';
+			$info_is_valid = false;
+		}
+		
+
+		
+		if($info_is_valid == true) //Есля введенные данные правильные, добавить пользователя в таблицу
+		{
+			$header = $_POST["header"];
+			$text = $_POST["text"];
+			
+			
+$query1 = "SELECT id FROM `users` WHERE username='$_SESSION['username']'";
+ $result1 = mysqli_query($con,$query1) or die(mysql_error());
+ $date = date("Y-m-d H:i:s");
+			$query = "INSERT INTO `posts`(`iduser`,`header`, `text`, `date`) 
+					 VALUES ('$result1', '$header', '$text', '$date')";
+			mysqli_query($con, $query);
+			echo '<div class="sysreq2">';
+			echo "Ваша регистрация прошла успешно! <a href='login.php'>Войти</a>";
+			echo ' <br></div>';
+		}
+		else
+		{
+			echo '<div class="sysreq">';
+			echo "Ваша регистрация была неудачной, попробуйте еще раз <a href='registration.php'>Зарегистрироваться</a></div>";
+			echo ' <br>';
+		}
+
+	
+		
+	
+?>

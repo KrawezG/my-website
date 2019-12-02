@@ -12,16 +12,23 @@
 					 $password = mysqli_real_escape_string($con,$password);
 					 $query = "SELECT * FROM `users` WHERE username='$username'
 					and password='$password'";
-					 $result = mysqli_query($con,$query) or die(mysql_error());
-					 $rows = mysqli_num_rows($result);
-						if($rows==1){header("Location: index.php");
-							$_SESSION['username'] = $username;
+					$result = mysqli_query($con,$query) or die(mysql_error());
+					 $row=mysqli_fetch_assoc($result);
+					$num=mysqli_num_rows($result);
+
+					if($num==1)
+							{
+							session_start(); 
 							
-						}else{
+							$_SESSION['user_id']= $row['id'];;
+							$_SESSION['username'] = $username;
+							header("Location: index.php");
+							} else
+							{
 							echo "<div class='error'>
 							<h3>Неверно введён логин/пароль.</h3> <a href='login.php'>Войти</a>
 							</div>";
-						}
+							}
 					}else{
 ?>
 <!DOCTYPE html>
@@ -32,13 +39,15 @@
 				<link rel="stylesheet" href="style.css" />
 		</head>
 		<body>
-			<div class="logo2">
-				
-			</div>			
-			
-				
-			
-		<div class="form">
+			<div class= "wrapper2">
+		<div class="headerwrapper">
+		<div class="logo2">
+						
+					</div>
+					</div>
+	
+			 <div class="mainwrapper2"> 
+		<div class="form2">
 			<h1>Авторизация</h1>
 			<form action="" method="post" name="login">
 				<div class="auth">
@@ -49,9 +58,17 @@
 				</div>
 			</form>
 		</div>
-		<div class="footer2">
-			<p>IU4-11B Krawez</p>
 		</div>
-		<?php } ?>
-		</body>
+		<div class="footerwrapper">
+		<div class="block">
+		</div>
+			<div class="footer2">
+					<p>IU4-11B Krawez</p>
+				</div>
+		</div >
+	</div>
+</body>	
 </html>
+					<?php 
+					}
+					?>

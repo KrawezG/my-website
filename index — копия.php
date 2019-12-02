@@ -36,7 +36,6 @@ include("auth.php");
 			<div class="line">
 			</div>
 			see comments
-			<a href='main.php'>Main</a></br>
 		</div>
 
 		<div class="content" >

@@ -56,9 +56,9 @@ include("auth.php");
 				if( $rows["iduser"]==$_SESSION['user_id']) {
 					$header=$rows["varchar1"];
 					$text=$rows["text"];
-
+				
 					echo "
-		<br/><a href='redactpost.php'>Редактировать</a> <a href='deletepost.php'>Удалить</a>";
+		<br/><a href='redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='deletepost.php/?id=".$rows["id"]."'>Удалить</a>";
 				}
 				echo "</div>  ";
 			}
