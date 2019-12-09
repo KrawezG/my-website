@@ -26,7 +26,7 @@
 							} else
 							{
 							echo "<div class='error'>
-							<h3>Неверно введён логин/пароль.</h3> <a href='login.php'>Войти</a>
+							<h3>Неверно введён логин/пароль.</h3> <a href='main.php'>Войти</a>
 							</div>";
 							}
 					}else{

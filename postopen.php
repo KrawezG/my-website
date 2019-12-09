@@ -3,7 +3,7 @@
 <HTML>
 <HEAD>
 <meta charset="utf-8">
-<link rel="stylesheet"  href="style.css">
+<link rel="stylesheet"  href="http://localhost/style.css">
 <title> Gleb Krawez </title>
 <!-- <style>  -->
 <!-- </style> -->
@@ -17,7 +17,7 @@
 		<div class="logout">
 		Вы не зарегистрированы. <br> 
 		
-				<a href='logout.php'>Зарегистрироваться</a></br>		
+				<a href='http://localhost/logout.php'>Зарегистрироваться</a></br>		
 		</div>
 		</div>
 		<div class="mainwrapper">
@@ -37,28 +37,30 @@
 			content
 			<div>
 			<?php
-			$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` ORDER BY `date` DESC";
+			$id= $_GET["id"];
+		$mysql = new mysqli('localhost','root','','users');
+			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
  
-			$result = mysqli_query($mysql, $query); 
+			$result = mysqli_query($mysql, $query);
 			if($result)
 			$rows = "";
 			while($rows = $result->fetch_assoc()){
-				echo "<div class=\"postmain\">";
-				echo "<h6>".$rows["varchar1"]." </h6><br>";
+				echo "<div class=\"post\">";
+				echo "<h3>".$rows["varchar1"]." </h3><br>";
 				echo mb_strimwidth($rows["text"], 0, 30, "...");
 				echo "<p>".$rows["date"]."</p>";
-				echo "<a href='postopen.php/?id=".$rows["id"]."'>Читать далее</a>";
+				
 				echo "</div>  ";
 			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
 			?>
-</div>			</div>
+			</div>			
+		
 		</div>
-		<div class="right">
-		right
-		</div>
+			<div class="right">
+			right
+			</div>
 		</div>
 		<div class="footerwrapper">
 		<div class="footer">

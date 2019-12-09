@@ -40,8 +40,8 @@ include("auth.php");
 		</div>
 
 		<div class="content" >
-			content
-			<div>
+			<h3>content</h3>
+			
 			<?php
 			$mysql = new mysqli('localhost','root','','users');
 			$query ="SELECT * FROM `test` ORDER BY `date` DESC";
@@ -51,21 +51,21 @@ include("auth.php");
 			$rows = "";
 			while($rows = $result->fetch_assoc()){
 				echo "<div class=\"postmain\">";
-				echo "<h6>".$rows["varchar1"]." </h6><br>";
+				echo "<h4>".$rows["varchar1"]." </h4><br>";
 				echo mb_strimwidth($rows["text"], 0, 30, "...");
+				echo "<a href='postprivate.php/?id=".$rows["id"]."'>Читать далее</a>";
+				echo "<p>".$rows["date"]."</p>";
 				if( $rows["iduser"]==$_SESSION['user_id']) {
 					$header=$rows["varchar1"];
 					$text=$rows["text"];
-				
-					echo "
-		<br/><a href='redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='deletepost.php/?id=".$rows["id"]."'>Удалить</a>";
+					echo "<br/><a href='redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='deletepost.php/?id=".$rows["id"]."'>Удалить</a>";
 				}
 				echo "</div>  ";
 			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
 			?>
-			</div>
+			
 			<a href='postcreateprivate.php'>Добавить новый пост</a></br>	
 			</div>
 		
