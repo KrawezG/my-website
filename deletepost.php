@@ -74,8 +74,8 @@ $id= $_GET["id"];
 		$id=$_GET['id'];
 		 $mysql->query("DELETE FROM `test` WHERE `id`=$id"); 
 		echo "
-		<h3>Пост delete успешно</h3>
-		<br/>Click here to <a href='http://localhost/main.php'>Вернуться на главную</a>";		
+		<h3>Пост удален успешно</h3>
+		<br/><a href='http://localhost/main.php'>Вернуться на главную</a>";		
 ?>
 </div>
 		<div class="right">

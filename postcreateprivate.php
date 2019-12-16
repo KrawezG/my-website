@@ -47,7 +47,7 @@ include("auth.php");
 
 		<div class="content" >
 			<div class="form">
-		<h1>Регистрация</h1><br> <p> </p>
+		<h1>Создание поста</h1><br> <p> </p>
 		<form name="add_post" action="addpost.php" method="post">
 		 <p>Введите заголовок </p><input type="text" name="header" placeholder="введите заголовок" required /><br>
 		<p>Введите текст</p><textarea name="text" rows="10" cols="70" required>

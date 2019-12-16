@@ -87,7 +87,7 @@ include("auth.php");
 			$rows = "";
 			echo "<div class=\"usertable\">";
 			echo "<table>  ";
-			echo "<tr><th>id</th><th>username</th><th>email</th><th>password</th></tr>";
+			echo "<tr><th>id</th><th>username</th><th>email</th><th>password</th><th></th><th></th></tr>";
 			while($rows = $result->fetch_assoc()){
 			echo "<tr><td>".$rows["id"]."</td>";
 			echo "<td>".$rows["username"]."</td> ";

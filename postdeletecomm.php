@@ -75,8 +75,8 @@ $idc= $_GET["idc"];
 		$id=$_GET['id'];
 		 $mysql->query("DELETE FROM `comments` WHERE `id`=$idc"); 
 		echo "
-		<h3>Пост delete успешно</h3>
-		<br/>Click here to <a href='http://localhost/postprivate.php/?id=".$id."'>Вернуться на главную</a>";		
+		<h3>Комментарий удален успешно</h3>
+		<br/><a href='http://localhost/postprivate.php/?id=".$id."'>Вернуться на главную</a>";		
 ?>
 </div>
 		<div class="right">
