@@ -1,9 +1,9 @@
 <?php
 //include auth.php file on all secure pages
 include("auth.php");
-$id= $_GET["id"];
+$id= $_SESSION["user_id"];
 		$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
+			$query ="SELECT * FROM `users` WHERE `id`=\"".$id."\" ";
  
 			$result = mysqli_query($mysql, $query);
 			if($result)
@@ -12,19 +12,24 @@ $id= $_GET["id"];
 		
 		while($rows = $result->fetch_assoc()){
 			session_start();
-			if ($rows[iduser]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
+			if ($rows[admin]==1) {
 				$i=$i+1;
 		} }
 		if ($i>=1) {
 		
 			$rows = "";
+	
+		 
+	
+		
+		
 ?>
 <!doctype HTML>
 <HTML>
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="http://localhost/style.css">
-<title> Редактирование поста </title>
+<title> Изменить пользователя </title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -35,7 +40,7 @@ $id= $_GET["id"];
 			
 		</div>
 		<div class="logout">
-		Вы авторизованы как 
+		Вы вошли как 
 		<?php 
 				session_start();
 				echo $_SESSION['username'];
@@ -67,43 +72,50 @@ $id= $_GET["id"];
 
 		<div class="content" >
 			<div class="form">
-		<h1>Редактировать</h1><br> <p> </p>
+		<h1>Изменить</h1><br> <p> </p>
 		<?php
 		$mysql = new mysqli('localhost','root','','users');
-if ( !empty($_POST["header"]) &&  !empty($_POST["text"] )) {
-		$varchar1 = filter_var(trim($_POST['header']),
+if ( !empty($_POST["username"]) &&  !empty($_POST["password"]) &&  !empty($_POST["email"])) {
+		$username = filter_var(trim($_POST['username']),
 		FILTER_SANITIZE_STRING);
-		$text = filter_var(trim($_POST['text']),
+		$email = filter_var(trim($_POST['email']),
 		FILTER_SANITIZE_STRING);
-		
+		$password = filter_var(trim($_POST['password']),
+		FILTER_SANITIZE_STRING);
 		//$char = $_POST["header"];
 		//$text = $_POST["text"];
 		$iduseer=$_GET["id"];
-		$query1="UPDATE `test` SET `varchar1` = '$varchar1', `text` = '$text'  WHERE `test`.`id` ='$iduseer'";
+		$query1="UPDATE `users` SET `username` = '$username', `email` = '$email' , `password` = '$password' WHERE `users`.`id` ='$iduseer'";
 		$sql = mysqli_query( $mysql, $query1);
 		 if (!$sql) { echo mysqli_error($mysql); } 
 		 
 		}
-		$id= $_GET["id"];
+		$id1= $_GET["id"];
 		$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
+			$query ="SELECT * FROM `users` WHERE `id`=\"".$id1."\"";
  
 			$result = mysqli_query($mysql, $query);
 			if($result)
 			$rows = "";
 		while($rows = $result->fetch_assoc()){
-		$header=$rows[varchar1];
-		$text=$rows[text];
-		}
+		
+		
 		echo "<form name=\"add_post\" action=\"\" method=\"post\">
-		 <p>Введите заголовок </p><input type=\"text\" name=\"header\" placeholder=\"введите заголовок\" value=\"".$header."\" required /><br>
-		<p>Введите текст</p><textarea name=\"text\" rows=\"10\" cols=\"70\"  required>".$text."
-		</textarea><br>
-		
+		 <p>Изменение имени </p><input type=\"text\" name=\"username\"  value=\"".$rows["username"]."\" required /><br>
+		<p>Изменения почты </p><input type=\"text\" name=\"email\"  value=\"".$rows["email"]."\" /><br>
+		<p>Изменение пароля </p><input type=\"text\" name=\"password\"  value=\"".$rows["password"]."\"  /><br>
 		<input type=\"submit\" name=\"submit\" value=\"Изменить\" />
-		</form>"
+		</form>";
+		}
 		?>
+			
+		<?php
+		 
 		
+		unset($_POST["username"]);
+		unset($_POST["password"]);
+		unset($_POST["email"]);
+?>
 		</div>
 		
 		</div>
@@ -119,6 +131,6 @@ if ( !empty($_POST["header"]) &&  !empty($_POST["text"] )) {
 	</div>
 </body>
 </html>
-		<?php }  else { header("Location: http://localhost/main.php");
+		<?php }  else { header("Location: http://localhost/privatepost.php");
 		}  
 				?>

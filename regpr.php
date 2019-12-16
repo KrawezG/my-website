@@ -37,7 +37,7 @@ include("auth.php");
 				<p align="center">Вы уже авторизованы как <?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
-				<a href='index.php'>На главную.</a></p>
+				<a href='main.php'>На главную.</a></p>
 					
 			</div>
 			<div class="right">

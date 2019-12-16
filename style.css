@@ -14,7 +14,7 @@
   width: 90%; top: 0%;
     height: 120px;
   left: 5%; 
-  position: absolute; margin: 0px;
+  position: absolute; margin: 0px; background: url(logo.jpg);
   text-align: center; font-size: 30px;
   border: 2px solid #234F95;
   } 
@@ -24,7 +24,7 @@
   .logo { background-color: #72A5C9;
   width: 85%; top: 0%;
     height: 120px;
-  left: 0%; 
+  left: 0%; background: url(logo.jpg);
   position: absolute; margin: 0px;
     display: inline-block;
   text-align: center; font-size: 30px;
@@ -39,21 +39,25 @@
   margin: 0px;
     background-color: #72A5C9;
   text-align: center; font-size: 15px;
-  border: 2px solid #234F95;
+  border: 2px solid #234F95; background: url(logout.jpg);
 }  
  
   .menu { left:50px;  width: 150px; height: 100%;
     background: #5683CA ; min-height: 1000px;
   border-left: 2px solid #234F95;border-right: 2px solid #234F95; display: inline-block;
-  margin: 0px; position: absolute;
+  margin: 0px; position: absolute; background: url(menu.jpg);
   }
 .line {
-    height:1px; width: 142px; background-color: gray;
-    border: 2px solid white; margin: 2px;
+    height:2px; width: 142px; background-color: #2E4575;
+    border: 2px solid #3B64BA; margin: 2px;
+  }  
+  .linecomm {
+    height:0px; width: 100%; background-color: #2E4575;
+    border: 1px solid #3B64BA; margin: 2px;  margin-right: 50px
   }  
 .content { left: 204px;  right: 50px;  height: 100%;
-  background: white ; min-height: 1000px; overflow-y: auto;
-  margin: 0px; position: absolute;  display: inline-block;
+  background: white ; min-height: 1000px; overflow-y: auto; background: url(main.jpg);
+  margin: 0px; position: absolute;  display: inline-block; padding-left: 30px;
   
   }
   .posts { left: 208px;  right: 54px;  
@@ -64,8 +68,20 @@
   .postmain {   width: 300px; height: 300px;
 
     background: #5683CA ; 
-  border: 2px solid #234F95; display: inline-block;
-  margin: 3px;
+  border: 2px solid #234F95; display: inline-block; 
+  margin: 3px; vertical-align: middle; overflow-x:hidden;
+  }
+  .postuser {   width: 90%; height: 500px; background-color: #72A5C9;
+
+   
+  border: 2px solid #234F95; border-bottom: 3px solid #234F95; display: block;
+  margin: 3px ; text-align: justify; margin-bottom: 5px;
+  }
+  .post {   width: 90%; height: 500px;
+
+   
+  border-top: 2px solid #234F95; border-bottom: 3px solid #234F95; display: block;
+  margin: 3px ; text-align: justify;
   }
  .block {
    width: 5%; height: 120px; border: 0px;
@@ -74,25 +90,25 @@
   
   .footer { left:2px; bottom: 0px; right: 0px;
   height: 120px; background: #72A5C9 ; display: inline-block;
-   margin: 0px;  width:100%;
-   border: 2px solid #234F95;
+   margin: 0px;  width:100%; background: url(footer.jpg);
+   border: 2px solid #234F95; text-align: center;
   } 
   .footer2 { left: 5%; bottom: 0px; width:90%;
   height: 120px; background: #72A5C9 ; display: inline-block;
-   margin: 0px;  
-   border: 2px solid #234F95;
+   margin: 0px;   background: url(footer.jpg);
+   border: 2px solid #234F95; text-align: center;
   } 
   
   
   .left {
   background-color: #8AAFC9; height: 100%;
   width: 50px;  display: inline-block;
-   left: 0px; min-height: 1000px;
-  position: absolute; border: 0px; margin: 0px;
+   left: 0px; min-height: 1000px; background: url(footer.jpg);
+  position: absolute; border: 0px; margin: 0px; background: url(footer.jpg);
   }
   .right {
   background-color: #8AAFC9; height: 100%;
-  width: 50px; min-height: 1000px;
+  width: 50px; min-height: 1000px; background: url(footer.jpg);
    display: inline-block;
   right: 0px;
   
@@ -134,7 +150,8 @@
 
   }
   body {margin: 0px;}
-
+  h1,h2,h3,h5,h6,h7 { text-align: center;
+  }
 
 * {
   margin: 0;
@@ -163,8 +180,8 @@
 
 padding: 0 0 5px 5px;
 }
-.comment { border: 1px black; background: white;
-  margin: 1px, 5px, 1px, 5px;
+.comment { 
+  margin: 1px 5px 1px 5px!important;
 
 }
  

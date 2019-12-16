@@ -1,9 +1,9 @@
 <?php
 //include auth.php file on all secure pages
 include("auth.php");
-$id= $_GET["id"];
+$id= $_SESSION["user_id"];
 		$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
+			$query ="SELECT * FROM `users` WHERE `id`=\"".$id."\" ";
  
 			$result = mysqli_query($mysql, $query);
 			if($result)
@@ -12,7 +12,7 @@ $id= $_GET["id"];
 		
 		while($rows = $result->fetch_assoc()){
 			session_start();
-			if ($rows[iduser]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
+			if ($rows[admin]==1) {
 				$i=$i+1;
 		} }
 		if ($i>=1) {
@@ -25,7 +25,7 @@ $id= $_GET["id"];
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="http://localhost/style.css">
-<title> Удаление поста </title>
+<title> Удаление пользователя</title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -36,7 +36,7 @@ $id= $_GET["id"];
 			
 		</div>
 		<div class="logout">
-		Вы авторизованы как 
+		Вы вошли как 
 		<?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
@@ -72,9 +72,9 @@ $id= $_GET["id"];
 		//$text = $_POST["text"];
 		$user=$_SESSION['username'];
 		$id=$_GET['id'];
-		 $mysql->query("DELETE FROM `test` WHERE `id`=$id"); 
+		 $mysql->query("DELETE FROM `users` WHERE `id`=$id"); 
 		echo "
-		<h3>Пост delete успешно</h3>
+		<h3>Пользователь удален успешно</h3>
 		<br/>Click here to <a href='http://localhost/main.php'>Вернуться на главную</a>";		
 ?>
 </div>

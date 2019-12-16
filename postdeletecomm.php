@@ -1,9 +1,9 @@
 <?php
 //include auth.php file on all secure pages
 include("auth.php");
-$id= $_GET["id"];
+$idc= $_GET["idc"];
 		$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
+			$query ="SELECT * FROM `comments` WHERE `id`=\"".$idc."\"";
  
 			$result = mysqli_query($mysql, $query);
 			if($result)
@@ -36,7 +36,7 @@ $id= $_GET["id"];
 			
 		</div>
 		<div class="logout">
-		Вы авторизованы как 
+		Вы авторизованы как  
 		<?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
@@ -71,11 +71,12 @@ $id= $_GET["id"];
 		//$char = $_POST["header"];
 		//$text = $_POST["text"];
 		$user=$_SESSION['username'];
+		$idc=$_GET['idc'];
 		$id=$_GET['id'];
-		 $mysql->query("DELETE FROM `test` WHERE `id`=$id"); 
+		 $mysql->query("DELETE FROM `comments` WHERE `id`=$idc"); 
 		echo "
 		<h3>Пост delete успешно</h3>
-		<br/>Click here to <a href='http://localhost/main.php'>Вернуться на главную</a>";		
+		<br/>Click here to <a href='http://localhost/postprivate.php/?id=".$id."'>Вернуться на главную</a>";		
 ?>
 </div>
 		<div class="right">

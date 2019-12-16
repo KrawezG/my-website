@@ -7,7 +7,7 @@ include("auth.php");
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="style.css">
-<title> Gleb Krawez </title>
+<title> Создать пост</title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -15,30 +15,34 @@ include("auth.php");
 	<div class="wrapper">
 		<div class="headerwrapper">
 		<div class="logo">
-			LOGO
+			
 		</div>
 		<div class="logout">
-		Логин 
+		Вы авторизованы как 
 		<?php 
 				session_start();
-				echo $_SESSION['username'];
-				echo $_SESSION['user_id'];
-				?>.</br>
+				echo $_SESSION['username'];?>.</br>
+				<?php echo $_SESSION['user_id']; ?>.</br>
+				<a href='http://localhost/userpage.php'>Мой профиль</a>
 				<a href='logout.php'>Выйти</a></br>		
 		</div>
 		</div>
 		<div class="mainwrapper">
 		<div class="left" >
-		left
 		</div>
 		
 
 		<div class="menu">
-			menu
+			<a href='http://localhost/main.php'><h3>Главная</h3></a></br>
 			<div class="line">
 			</div>
-			<a href='index.php'>index.php</a>
-			see comments
+			<a href='http://localhost/search.php'><h3>Поиск</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/chosen.php'><h3>Избранное</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/userposts.php'><h3>Мои посты</h3></a>
 		</div>
 
 		<div class="content" >
@@ -56,12 +60,12 @@ include("auth.php");
 		
 		</div>
 		<div class="right">
-		right
+		
 		</div>
 		</div>
 		<div class="footerwrapper">
 		<div class="footer">
-			<p> footer </p>
+			<h3>IU4-11B Krawez</h3>
 		</div>
 		</div>
 	</div>

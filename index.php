@@ -27,7 +27,6 @@ include("auth.php");
 		</div>
 		<div class="mainwrapper">
 		<div class="left" >
-		left
 		</div>
 		
 

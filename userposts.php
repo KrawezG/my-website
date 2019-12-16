@@ -6,8 +6,8 @@ include("auth.php");
 <HTML>
 <HEAD>
 <meta charset="utf-8">
-<link rel="stylesheet"  href="style.css">
-<title> Главная </title>
+<link rel="stylesheet"  href="http://localhost/style.css">
+<title> Ваши посты </title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -18,17 +18,17 @@ include("auth.php");
 			
 		</div>
 		<div class="logout">
-		Вы авторизованы как 
+		Вы авторизованы как  
 		<?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
-				
 				<a href='http://localhost/userpage.php'>Мой профиль</a>
-				<a href='logout.php'>Выйти</a></br>		
+				<a href='http://localhost/logout.php'>Выйти</a></br>		
 		</div>
 		</div>
 		<div class="mainwrapper">
 		<div class="left" >
+		
 		</div>
 		
 
@@ -43,57 +43,41 @@ include("auth.php");
 			<div class="line">
 			</div>
 			<a href='http://localhost/userposts.php'><h3>Мои посты</h3></a>
+			
 		</div>
 
 		<div class="content" >
-			
-			
+			<h3>Ваши посты</h3>
+			<div>
 			<?php
 			$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` ORDER BY `date` DESC";
+			$query ="SELECT * FROM `test` WHERE `iduser`=\"".$_SESSION['user_id']."\" ORDER BY `date` DESC";
  
 			$result = mysqli_query($mysql, $query); 
 			if($result)
 			$rows = "";
 			while($rows = $result->fetch_assoc()){
-			if ($rows["hide"]!=1) {
-				echo "<div class=\"postmain\">";
-				echo "<h4>".$rows["varchar1"]." </h4><br><p>";
-				echo mb_strimwidth($rows["text"], 0, 30, "...");
-				echo "<a href='postprivate.php/?id=".$rows["id"]."'> Читать далее</a></p><br>";
-				echo "<p>".$rows["date"]."</p>";
-				if( $rows["iduser"]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
-					$header=$rows["varchar1"];
-					$text=$rows["text"];
-					echo "<p><a href='redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='deletepost.php/?id=".$rows["id"]."'>Удалить</a></p>";
-				}
-				echo "</div>  ";
-			} elseif ( $rows["iduser"]==$_SESSION['user_id']) {
-				echo "<div class=\"postmain\">";
-				echo "<h4> Вы скрыли этот пост</h4><br>";
-			echo "<a href='http://localhost/hide.php/?id=".$rows["id"]."&page=postprivate.php'><h4>Открыть его</h4></a>";
-				
-			
-				echo "</div>  ";
-			} elseif ( $_SESSION['username']=="admin") {
-				echo "<div class=\"postmain\">";
+				echo "<div class=\"postuser\">";
+				if ($rows["hide"]==0){
+				echo "<br/><a href='http://localhost/hide.php/?id=".$rows["id"]."&page=userposts.php'>Скрыть</a>";
+				} elseif ($rows["hide"]==1) {
+				echo "<br/><a href='http://localhost/hide.php/?id=".$rows["id"]."&page=userposts.php'>Открыть</a>";
+				} 
 				echo "<h4>".$rows["varchar1"]." </h4><br>";
-				echo mb_strimwidth($rows["text"], 0, 30, "...");
-				echo "<a href='postprivate.php/?id=".$rows["id"]."'>Читать далее</a>";
+				echo mb_strimwidth($rows["text"], 0, 400, "...");
+				echo "<a href='http://localhost/postprivate.php/?id=".$rows["id"]."'>Читать далее</a>";
 				echo "<p>".$rows["date"]."</p>";
-				if( $rows["iduser"]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
+				if( $rows["iduser"]==$_SESSION['user_id']) {
 					$header=$rows["varchar1"];
 					$text=$rows["text"];
-					echo "<p><a href='redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='deletepost.php/?id=".$rows["id"]."'>Удалить</a></p>";
+					echo "<br/><a href='http://localhost/redactpost.php/?id=".$rows["id"]."'>Редактировать</a> <a href='http://localhost/deletepost.php/?id=".$rows["id"]."'>Удалить</a>";
 				}
 				echo "</div>  ";
-				
-			}
 			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
-			?>
-			
+			?> 
+			</div>
 			<a href='postcreateprivate.php'>Добавить новый пост</a></br>	
 			</div>
 		

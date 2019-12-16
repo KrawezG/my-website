@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Registration</title>
+<title>Регистрация</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -33,7 +33,7 @@
 		</div>
 		<div class="footerwrapper">
 			<div class="footer2">
-					<p>IU4-11B Krawez</p>
+					<h3>IU4-11B Krawez</h3>
 				</div>
 		</div >
 	</div>
@@ -149,7 +149,7 @@
 		<div class="block">
 		</div>
 			<div class="footer2">
-					<p>IU4-11B Krawez</p>
+					<h3>IU4-11B Krawez</h3>
 				</div>
 		</div >
 	</div>	

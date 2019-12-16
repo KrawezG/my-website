@@ -1,31 +1,13 @@
 <?php
 //include auth.php file on all secure pages
 include("auth.php");
-$id= $_GET["id"];
-		$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `test` WHERE `id`=\"".$id."\"";
- 
-			$result = mysqli_query($mysql, $query);
-			if($result)
-			$rows = "";
-		$i=0;
-		
-		while($rows = $result->fetch_assoc()){
-			session_start();
-			if ($rows[iduser]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
-				$i=$i+1;
-		} }
-		if ($i>=1) {
-		
-			$rows = "";
-?>
 ?>
 <!doctype HTML>
 <HTML>
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="http://localhost/style.css">
-<title> Удаление поста </title>
+<title> Личная страница</title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -40,7 +22,7 @@ $id= $_GET["id"];
 		<?php 
 				session_start();
 				echo $_SESSION['username'];?>.</br>
-				<a href='http://localhost/userpage.php'>Мой профиль </a>
+				<a href='http://localhost/userpage.php'>Мой профиль</a>
 				<a href='http://localhost/logout.php'>Выйти</a></br>		
 		</div>
 		</div>
@@ -60,24 +42,34 @@ $id= $_GET["id"];
 			<a href='http://localhost/chosen.php'><h3>Избранное</h3></a></br>
 			<div class="line">
 			</div>
-			
 			<a href='http://localhost/userposts.php'><h3>Мои посты</h3></a>
+			
 		</div>
 
 		<div class="content" >
+			<h3>Статистика</h3>
+			<div>
+			<?php
+			$mysql = new mysqli('localhost','root','','users');
+			$query ="SELECT COUNT(*) FROM `test` WHERE `iduser`=\"".$_SESSION['user_id']."\" ";
+ 
+			$result = mysqli_query($mysql, $query); 
+			if($result)
+			$countpost = mysqli_fetch_array($result);
+			echo " Опубликовано ".$countpost[0]." постов<br>";
+			$query1 ="SELECT COUNT(*) FROM `comments` WHERE `iduser`=\"".$_SESSION['user_id']."\" ";
+ 
+			$result1 = mysqli_query($mysql, $query1); 
+			if($result1)
+			$countcomm = mysqli_fetch_array($result1);
+			echo " Опубликовано ".$countcomm[0]." комментариев<br>";
+			    mysqli_free_result($result);
+			mysqli_close($mysql);
+			?> 
+			</div>
 			
-<?php
- $mysql = new mysqli('localhost','root','','users');
-		//$char = $_POST["header"];
-		//$text = $_POST["text"];
-		$user=$_SESSION['username'];
-		$id=$_GET['id'];
-		 $mysql->query("DELETE FROM `test` WHERE `id`=$id"); 
-		echo "
-		<h3>Пост delete успешно</h3>
-		<br/>Click here to <a href='http://localhost/main.php'>Вернуться на главную</a>";		
-?>
-</div>
+			</div>
+		
 		<div class="right">
 		
 		</div>
@@ -90,6 +82,3 @@ $id= $_GET["id"];
 	</div>
 </body>
 </html>
-<?php }  else { header("Location: http://localhost/main.php");
-		}  
-				?>

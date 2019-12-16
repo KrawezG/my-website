@@ -4,7 +4,7 @@
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="style.css">
-<title> Gleb Krawez </title>
+<title> Главная</title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -12,29 +12,36 @@
 	<div class="wrapper">
 		<div class="headerwrapper">
 		<div class="logo">
-			LOGO
+			
 		</div>
 		<div class="logout">
-		Вы не зарегистрированы. <br> 
+		Вы не авторизованы<br> 
 		
-				<a href='logout.php'>Зарегистрироваться</a></br>		
+				<a href='registration.php'>Зарегистрируйтесь</a> и</br>
+				<a href='login.php'>войдите</a></br>
 		</div>
 		</div>
 		<div class="mainwrapper">
 		<div class="left" >
-		left
+		
 		</div>
 		
 
 		<div class="menu">
-			menu
+			<a href='http://localhost/main.php'><h3>Главная</h3></a></br>
 			<div class="line">
 			</div>
-			see comments
+			<a href='http://localhost/search.php'><h3>Поиск</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/chosen.php'><h3>Избранное</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/userposts.php'><h3>Мои посты</h3></a>
 		</div>
 
 		<div class="content" >
-			content
+			
 			<div>
 			<?php
 			$mysql = new mysqli('localhost','root','','users');
@@ -44,12 +51,14 @@
 			if($result)
 			$rows = "";
 			while($rows = $result->fetch_assoc()){
+				if ($rows["hide"]!=1) {
 				echo "<div class=\"postmain\">";
-				echo "<h6>".$rows["varchar1"]." </h6><br>";
+				echo "<h3>".$rows["varchar1"]." </h3><br>";
 				echo mb_strimwidth($rows["text"], 0, 30, "...");
 				echo "<p>".$rows["date"]."</p>";
 				echo "<a href='postopen.php/?id=".$rows["id"]."'>Читать далее</a>";
 				echo "</div>  ";
+				}
 			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
@@ -57,12 +66,12 @@
 </div>			</div>
 		</div>
 		<div class="right">
-		right
+		
 		</div>
 		</div>
 		<div class="footerwrapper">
 		<div class="footer">
-			<p> footer </p>
+			<h3>IU4-11B Krawez</h3>
 		</div>
 		</div>
 	</div>

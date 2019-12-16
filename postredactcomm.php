@@ -24,7 +24,22 @@ include("auth.php");
 		
 				}
 			$mysql->close();
+		$mysql = new mysqli('localhost','root','','users');
+if ( !empty($_POST["textred"]))  {
 		
+		$text = filter_var(trim($_POST['text']),
+		FILTER_SANITIZE_STRING);
+		
+		//$char = $_POST["header"];
+		//$text = $_POST["text"];
+		$iduseer=$_GET["id"];
+		$query1="UPDATE `comments` SET `text` = '$text' WHERE `comments`.`id` ='$iduseer'";
+		$sql = mysqli_query( $mysql, $query1);
+		 if (!$sql) { echo mysqli_error($mysql); } 
+		 
+		}
+
+
 				
 		
 		
@@ -34,7 +49,7 @@ include("auth.php");
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="http://localhost/style.css">
-<title> Просмотр поста </title>
+<title> Изменить комментарий </title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -122,53 +137,54 @@ include("auth.php");
 			mysqli_close($mysql);
 			?>
 			</div>
-			<div >
+			<div class="">
 			<?php
+				$mysql = new mysqli('localhost','root','','users');
+if ( !empty($_POST["textred"]))  {
+		
+		$text = filter_var(trim($_POST['text']),
+		FILTER_SANITIZE_STRING);
+		
+		//$char = $_POST["header"];
+		//$text = $_POST["text"];
+		$iduseer=$_GET["id"];
+		$query1="UPDATE `comments` SET `text` = '$text' WHERE `comments`.`id` ='$iduseer'";
+		$sql = mysqli_query( $mysql, $query1);
+		 if (!$sql) { echo mysqli_error($mysql); }
+else { $id=$_GET["id"];
+	echo "<p>Комментарий обновлен</p><br>
+	<a href='http://localhost/postprivate.php/?id=".$id."'>Вернуться назад</a>
+	";
+}		 
+		 
+		}
 			$mysql = new mysqli('localhost','root','','users');
-			$query ="SELECT * FROM `comments` WHERE `idpost`=\"".$id."\" ORDER BY `date` DESC";
+			$query2 ="SELECT * FROM `comments` WHERE `id`=\"".$_GET["idc"]."\" ";
  
-			$result = mysqli_query($mysql, $query); 
-			if($result)
+			$result2 = mysqli_query($mysql, $query2); 
+			if($result2)
 			$rows = "";
-			while($rows = $result->fetch_assoc()){
-				echo "<div class=\"comment\" style=\" border: 5px black!important;\" >";
-				echo "<h4>".$rows["name"]." </h4><br>";
-				echo "<p>".$rows["text"]."</p>";
+			while($rows = $result2->fetch_assoc()){
 				
-				echo "<p>".$rows["date"]."</p>";
-				if( $rows["iduser"]==$_SESSION['user_id'] OR $_SESSION['username']=="admin") {
-					$header=$rows["varchar1"];
-					$text=$rows["text"];
+
+					
+					echo "<div><form name=\"add_post\" action=\"http://localhost/commred.php/?id=".$rows["id"]."&idpost=".$id."\" method=\"post\">
+		 <p>Изменение поста </p> <h4>".$rows["name"]." </h4><br>
+		<p>Введите текст</p><textarea name=\"textred\" rows=\"10\" cols=\"70\"  required>".$rows["text"]."
+		</textarea><br>
+		
+		<input type=\"submit\" name=\"submit\" value=\"изменить\" />
+		</form> </div>";
+					
+					
+						
 				
-					echo "
-		<br/><a href='http://localhost/postredactcomm.php/?idc=".$rows["id"]."&id=".$id."'>Редактировать</a> <a href='http://localhost/postdeletecomm.php/?idc=".$rows["id"]."&id=".$id."'>Удалить</a>";
 				}
-				echo "</div><div class=\"linecomm\"> </div>   ";
-			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
 			?>
 			</div>
 			
-				
-			<div class="form">
-			<h3>Добавить комментарий</h3><br> <p> </p>
-				<?php echo "<form name=\"add_post\" action=\"\" method=\"post\">
-				
-				<p>Введите текст</p><textarea name=\"text\" rows=\"3\" cols=\"50\" required>
-				</textarea><br>
-				
-				<input type=\"submit\" name=\"submit\" value=\"создать\" />
-				</form>";
-				
-
-				
-					
-		
-				
-			?>
-			</div>
-
 			</div>
 		<div class="right">
 		

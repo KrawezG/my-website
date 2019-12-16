@@ -4,7 +4,7 @@
 <HEAD>
 <meta charset="utf-8">
 <link rel="stylesheet"  href="http://localhost/style.css">
-<title> Gleb Krawez </title>
+<title>Просмотр поста </title>
 <!-- <style>  -->
 <!-- </style> -->
 </head>
@@ -12,30 +12,37 @@
 	<div class="wrapper">
 		<div class="headerwrapper">
 		<div class="logo">
-			LOGO
+			
 		</div>
 		<div class="logout">
-		Вы не зарегистрированы. <br> 
+		Вы не авторизованы<br> 
 		
-				<a href='http://localhost/logout.php'>Зарегистрироваться</a></br>		
+				<a href='registration.php'>Зарегистрируйтесь</a> и</br>
+				<a href='login.php'>войдите</a></br>		
 		</div>
 		</div>
 		<div class="mainwrapper">
 		<div class="left" >
-		left
+		
 		</div>
 		
 
 		<div class="menu">
-			menu
+			<a href='http://localhost/main.php'><h3>Главная</h3></a></br>
 			<div class="line">
 			</div>
-			see comments
+			<a href='http://localhost/search.php'><h3>Поиск</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/chosen.php'><h3>Избранное</h3></a></br>
+			<div class="line">
+			</div>
+			<a href='http://localhost/userposts.php'><h3>Мои посты</h3></a>
 		</div>
 
 		<div class="content" >
 			content
-			<div>
+			<div class="post">
 			<?php
 			$id= $_GET["id"];
 		$mysql = new mysqli('localhost','root','','users');
@@ -45,26 +52,47 @@
 			if($result)
 			$rows = "";
 			while($rows = $result->fetch_assoc()){
-				echo "<div class=\"post\">";
+				
 				echo "<h3>".$rows["varchar1"]." </h3><br>";
-				echo mb_strimwidth($rows["text"], 0, 30, "...");
+				echo  "<p>".$rows["text"]."</p>";
+				echo "<p>".$rows["date"]."</p>";
+				
+				
+			}
+			    mysqli_free_result($result);
+			mysqli_close($mysql);
+			?>
+			</div>
+			<div class="comments">
+<?php
+			$mysql = new mysqli('localhost','root','','users');
+			$query ="SELECT * FROM `comments` WHERE `idpost`=\"".$id."\" ORDER BY `date` ASC";
+ 
+			$result = mysqli_query($mysql, $query); 
+			if($result)
+			$rows = "";
+			while($rows = $result->fetch_assoc()){
+				echo "<div class=\"comment1\">";
+				echo "<h4>".$rows["name"]." </h4><br>";
+				echo "<p>".$rows["text"]."</p>";
+				
 				echo "<p>".$rows["date"]."</p>";
 				
 				echo "</div>  ";
 			}
 			    mysqli_free_result($result);
 			mysqli_close($mysql);
-			?>
-			</div>			
-		
+			?>			
+		</div>
+		<p>Только зарегистрированные и активированные пользователи могут добавлять комментарии.</p>
 		</div>
 			<div class="right">
-			right
+			
 			</div>
 		</div>
 		<div class="footerwrapper">
 		<div class="footer">
-			<p> footer </p>
+			<h3>IU4-11B Krawez</h3>
 		</div>
 		</div>
 	</div>

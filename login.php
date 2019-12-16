@@ -1,7 +1,7 @@
 <?php
 	session_start();
 		if(isset($_SESSION["username"])){
-			header('Location:regpr.php');
+			header('Location:main.php');
 		}
 		require('db.php');
 				session_start();
@@ -13,21 +13,33 @@
 					 $query = "SELECT * FROM `users` WHERE username='$username'
 					and password='$password'";
 					$result = mysqli_query($con,$query) or die(mysql_error());
-					 $row=mysqli_fetch_assoc($result);
+					 
 					$num=mysqli_num_rows($result);
 
 					if($num==1)
 							{
+								while($row = $result->fetch_assoc()){
+							if ($row[admin]==0){
 							session_start(); 
 							
 							$_SESSION['user_id']= $row['id'];;
 							$_SESSION['username'] = $username;
-							header("Location: index.php");
-							} else
+							header("Location: main.php");
+						} else {
+							session_start(); 
+							
+							$_SESSION['user_id']= $row['id'];;
+							$_SESSION['username'] = "admin";
+							header("Location: adminmain.php");
+
+
+						}
+								}} else
 							{
 							echo "<div class='error'>
 							<h3>Неверно введён логин/пароль.</h3> <a href='main.php'>Войти</a>
 							</div>";
+
 							}
 					}else{
 ?>
@@ -63,7 +75,7 @@
 		<div class="block">
 		</div>
 			<div class="footer2">
-					<p>IU4-11B Krawez</p>
+					<h3>IU4-11B Krawez</h3>
 				</div>
 		</div >
 	</div>
