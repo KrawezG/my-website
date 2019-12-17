@@ -1,0 +1,18 @@
+SELECT * FROM `chosen` WHERE `idpost`=\"".$id."\" and `iduser`=\"".$_SESSION['user_id']."\" 
+INSERT INTO `chosen` (`idpost`,`iduser`)
+		 VALUES('$id','$userid')
+DELETE FROM `chosen` WHERE `idpost`=$id and `iduser`=$userid 
+INSERT INTO `comments` (`idpost`,`text`,`iduser`,`date`,`name`)
+		 VALUES('$id','$text','$userid','$date','$user')
+SELECT id FROM `users` WHERE username='$_SESSION['username']'
+INSERT INTO `test` (`varchar1`,`text`,`iduser`,`date`)
+		 VALUES('$char','$text','$userid','$date')
+SELECT * FROM `users` WHERE `admin`=\"0\"
+SELECT `idpost` FROM `chosen` WHERE `iduser`=\"".$_SESSION['user_id']."\"
+SELECT * FROM `test` WHERE `id`=\"".$row['idpost']."\" ORDER BY `date` DESC"
+UPDATE `comments` SET `text` = '$text' WHERE `comments`.`id` ='$iduseer'
+DELETE FROM `test` WHERE `id`=$id
+DELETE FROM `users` WHERE `id`=$id"
+
+
+
