@@ -14,5 +14,41 @@ UPDATE `comments` SET `text` = '$text' WHERE `comments`.`id` ='$iduseer'
 DELETE FROM `test` WHERE `id`=$id
 DELETE FROM `users` WHERE `id`=$id"
 
+CREATE TABLE `users`.`users` 
+( `id` INT(11) NOT NULL AUTO_INCREMENT ,
+`username` VARCHAR(50) NOT NULL ,
+`email` VARCHAR(50) NOT NULL ,
+`password` VARCHAR(50) NOT NULL ,
+`admin` INT(2) NOT NULL ,
+PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE `users`.`test` 
+( `id` INT(11) NOT NULL AUTO_INCREMENT ,
+`varchar1` VARCHAR(50) NOT NULL ,
+`text` TEXT NOT NULL ,
+`iduser` INT(11) NOT NULL ,
+`date` DATETIME NOT NULL ,
+`hide` INT(1) NOT NULL ,
+PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+CREATE TABLE `users`.`comments` 
+( `id` INT(11) NOT NULL AUTO_INCREMENT ,
+`name` VARCHAR(50) NOT NULL ,
+`text` TEXT NOT NULL ,
+`iduser` INT(11) NOT NULL ,
+`idpost` INT(11) NOT NULL ,
+`date` DATETIME NOT NULL ,
+PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE `users`.`chosen` 
+( `id` INT(11) NOT NULL AUTO_INCREMENT ,
+`iduser` INT(11) NOT NULL ,
+`idpost` INT(11) NOT NULL ,
+PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 
